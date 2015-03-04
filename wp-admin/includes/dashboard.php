@@ -811,7 +811,7 @@ function wp_dashboard_rss_output( $widget_id ) {
  * If $check_urls is empty, look for the rss feed url found in the dashboard
  * widget options of $widget_id. If cached, call $callback, a function that
  * echoes out output for this widget. If not cache, echo a "Loading..." stub
- * which is later replaced by AJAX call (see top of /wp-admin/index.php)
+ * which is later replaced by AJAX call (see top of /wp-admin/index.html)
  *
  * @since 2.5.0
  *

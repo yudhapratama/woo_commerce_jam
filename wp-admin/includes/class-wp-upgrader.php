@@ -1466,7 +1466,7 @@ class Theme_Upgrader extends WP_Upgrader {
 	 * Check that the package source contains a valid theme.
 	 *
 	 * Hooked to the {@see 'upgrader_source_selection'} filter by {@see Theme_Upgrader::install()}.
-	 * It will return an error if the theme doesn't have style.css or index.php
+	 * It will return an error if the theme doesn't have style.css or index.html
 	 * files.
 	 *
 	 * @since 3.3.0
@@ -1494,9 +1494,9 @@ class Theme_Upgrader extends WP_Upgrader {
 		if ( empty( $info['Name'] ) )
 			return new WP_Error( 'incompatible_archive_theme_no_name', $this->strings['incompatible_archive'], __( "The <code>style.css</code> stylesheet doesn't contain a valid theme header." ) );
 
-		// If it's not a child theme, it must have at least an index.php to be legit.
-		if ( empty( $info['Template'] ) && ! file_exists( $working_directory . 'index.php' ) )
-			return new WP_Error( 'incompatible_archive_theme_no_index', $this->strings['incompatible_archive'], __( 'The theme is missing the <code>index.php</code> file.' ) );
+		// If it's not a child theme, it must have at least an index.html to be legit.
+		if ( empty( $info['Template'] ) && ! file_exists( $working_directory . 'index.html' ) )
+			return new WP_Error( 'incompatible_archive_theme_no_index', $this->strings['incompatible_archive'], __( 'The theme is missing the <code>index.html</code> file.' ) );
 
 		return $source;
 	}

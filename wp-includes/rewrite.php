@@ -258,7 +258,7 @@ function add_rewrite_endpoint( $name, $places, $query_var = null ) {
 /**
  * Filter the URL base for taxonomies.
  *
- * To remove any manually prepended /index.php/.
+ * To remove any manually prepended /index.html/.
  *
  * @access private
  * @since 2.6.0
@@ -326,7 +326,7 @@ function url_to_postid($url) {
 	if ( false === strpos(home_url(), '://www.') )
 		$url = str_replace('://www.', '://', $url);
 
-	// Strip 'index.php/' if we're not using path info permalinks
+	// Strip 'index.html/' if we're not using path info permalinks
 	if ( !$wp_rewrite->using_index_permalinks() )
 		$url = str_replace( $wp_rewrite->index . '/', '', $url );
 
@@ -569,7 +569,7 @@ class WP_Rewrite {
 	 * @access public
 	 * @var string
 	 */
-	public $index = 'index.php';
+	public $index = 'index.html';
 
 	/**
 	 * Variable name to use for regex matches in the rewritten query.
@@ -612,7 +612,7 @@ class WP_Rewrite {
 	var $extra_rules_top = array();
 
 	/**
-	 * Rules that don't redirect to WordPress' index.php.
+	 * Rules that don't redirect to WordPress' index.html.
 	 *
 	 * These rules are written to the mod_rewrite portion of the .htaccess,
 	 * and are added by {@link add_external_rule()}.
@@ -768,7 +768,7 @@ class WP_Rewrite {
 	/**
 	 * Whether permalinks are being used and rewrite module is not enabled.
 	 *
-	 * Means that permalink links are enabled and index.php is in the URL.
+	 * Means that permalink links are enabled and index.html is in the URL.
 	 *
 	 * @since 1.5.0
 	 * @access public
@@ -789,7 +789,7 @@ class WP_Rewrite {
 	/**
 	 * Whether permalinks are being used and rewrite module is enabled.
 	 *
-	 * Using permalinks and index.php is not in the URL.
+	 * Using permalinks and index.html is not in the URL.
 	 *
 	 * @since 1.5.0
 	 * @access public
@@ -1283,7 +1283,7 @@ class WP_Rewrite {
 
 		$num_tokens = count($tokens[0]);
 
-		$index = $this->index; //probably 'index.php'
+		$index = $this->index; //probably 'index.html'
 		$feedindex = $index;
 		$trackbackindex = $index;
 		//build a list from the rewritecode and queryreplace arrays, that will look something like
@@ -1784,9 +1784,9 @@ class WP_Rewrite {
 		$rules = "<IfModule mod_rewrite.c>\n";
 		$rules .= "RewriteEngine On\n";
 		$rules .= "RewriteBase $home_root\n";
-		$rules .= "RewriteRule ^index\.php$ - [L]\n"; // Prevent -f checks on index.php.
+		$rules .= "RewriteRule ^index\.php$ - [L]\n"; // Prevent -f checks on index.html.
 
-		//add in the rules that don't redirect to WP's index.php (and thus shouldn't be handled by WP at all)
+		//add in the rules that don't redirect to WP's index.html (and thus shouldn't be handled by WP at all)
 		foreach ( (array) $this->non_wp_rules as $match => $query) {
 			// Apache 1.3 does not support the reluctant (non-greedy) modifier.
 			$match = str_replace('.+?', '.+', $match);
@@ -1884,7 +1884,7 @@ class WP_Rewrite {
 						<add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
 						<add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
 					</conditions>
-				<action type="Rewrite" url="index.php" />
+				<action type="Rewrite" url="index.html" />
 			</rule>';
 
 		if ( $add_parent_tags ) {
@@ -1924,7 +1924,7 @@ class WP_Rewrite {
 		//get everything up to the first ?
 		$index = (strpos($redirect, '?') == false ? strlen($redirect) : strpos($redirect, '?'));
 		$front = substr($redirect, 0, $index);
-		if ( $front != $this->index ) { //it doesn't redirect to WP's index.php
+		if ( $front != $this->index ) { //it doesn't redirect to WP's index.html
 			$this->add_external_rule($regex, $redirect);
 		} else {
 			if ( 'bottom' == $after)
@@ -1936,7 +1936,7 @@ class WP_Rewrite {
 	}
 
 	/**
-	 * Add a rule that doesn't redirect to index.php.
+	 * Add a rule that doesn't redirect to index.html.
 	 *
 	 * Can redirect to any place.
 	 *

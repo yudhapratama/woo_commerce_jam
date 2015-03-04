@@ -68,7 +68,7 @@ function redirect_canonical( $requested_url = null, $do_redirect = true ) {
 	if ( false === $original )
 		return;
 
-	// Some PHP setups turn requests for / into /index.php in REQUEST_URI
+	// Some PHP setups turn requests for / into /index.html in REQUEST_URI
 	// See: https://core.trac.wordpress.org/ticket/5017
 	// See: https://core.trac.wordpress.org/ticket/7173
 	// Disabled, for now:
@@ -306,7 +306,7 @@ function redirect_canonical( $requested_url = null, $do_redirect = true ) {
 				$redirect['query'] = remove_query_arg( 'cpage', $redirect['query'] );
 			}
 
-			$redirect['path'] = user_trailingslashit( preg_replace('|/' . preg_quote( $wp_rewrite->index, '|' ) . '/?$|', '/', $redirect['path']) ); // strip off trailing /index.php/
+			$redirect['path'] = user_trailingslashit( preg_replace('|/' . preg_quote( $wp_rewrite->index, '|' ) . '/?$|', '/', $redirect['path']) ); // strip off trailing /index.html/
 			if ( !empty( $addl_path ) && $wp_rewrite->using_index_permalinks() && strpos($redirect['path'], '/' . $wp_rewrite->index . '/') === false )
 				$redirect['path'] = trailingslashit($redirect['path']) . $wp_rewrite->index . '/';
 			if ( !empty( $addl_path ) )
@@ -360,7 +360,7 @@ function redirect_canonical( $requested_url = null, $do_redirect = true ) {
 	else
 		unset($redirect['port']);
 
-	// trailing /index.php
+	// trailing /index.html
 	$redirect['path'] = preg_replace('|/' . preg_quote( $wp_rewrite->index, '|' ) . '/*?$|', '/', $redirect['path']);
 
 	// Remove trailing spaces from the path
@@ -380,7 +380,7 @@ function redirect_canonical( $requested_url = null, $do_redirect = true ) {
 		$redirect['query'] = preg_replace( '#^\??&*?#', '', $redirect['query'] );
 	}
 
-	// strip /index.php/ when we're not using PATHINFO permalinks
+	// strip /index.html/ when we're not using PATHINFO permalinks
 	if ( !$wp_rewrite->using_index_permalinks() )
 		$redirect['path'] = str_replace( '/' . $wp_rewrite->index . '/', '/', $redirect['path'] );
 

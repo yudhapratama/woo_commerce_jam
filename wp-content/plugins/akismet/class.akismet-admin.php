@@ -84,7 +84,7 @@ class Akismet_Admin {
 		global $hook_suffix;
 
 		if ( in_array( $hook_suffix, array(
-			'index.php', # dashboard
+			'index.html', # dashboard
 			'edit-comments.php',
 			'comment.php',
 			'post.php',

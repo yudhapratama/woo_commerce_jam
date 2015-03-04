@@ -212,7 +212,7 @@ function get_tag_template() {
  * The taxonomy and term template is checked and used first, if it exists.
  * Second, just the taxonomy template is checked, and then finally, taxonomy.php
  * template is used. If none of the files exist, then it will fall back on to
- * index.php.
+ * index.html.
  *
  * The template path is filterable via the 'taxonomy_template' hook.
  *
@@ -256,7 +256,7 @@ function get_date_template() {
  * Retrieve path of home template in current or parent template.
  *
  * This is the template used for the page containing the blog posts.
- * Attempts to locate 'home.php' first before falling back to 'index.php'.
+ * Attempts to locate 'home.php' first before falling back to 'index.html'.
  *
  * The template path is filterable via the 'home_template' hook.
  *
@@ -267,7 +267,7 @@ function get_date_template() {
  * @return string Full path to home template file.
  */
 function get_home_template() {
-	$templates = array( 'home.php', 'index.php' );
+	$templates = array( 'home.php', 'index.html' );
 
 	return get_query_template( 'home', $templates );
 }

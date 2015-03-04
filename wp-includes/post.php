@@ -1422,14 +1422,14 @@ function register_post_type( $post_type, $args = array() ) {
 			else
 				$archive_slug = $wp_rewrite->root . $archive_slug;
 
-			add_rewrite_rule( "{$archive_slug}/?$", "index.php?post_type=$post_type", 'top' );
+			add_rewrite_rule( "{$archive_slug}/?$", "index.html?post_type=$post_type", 'top' );
 			if ( $args->rewrite['feeds'] && $wp_rewrite->feeds ) {
 				$feeds = '(' . trim( implode( '|', $wp_rewrite->feeds ) ) . ')';
-				add_rewrite_rule( "{$archive_slug}/feed/$feeds/?$", "index.php?post_type=$post_type" . '&feed=$matches[1]', 'top' );
-				add_rewrite_rule( "{$archive_slug}/$feeds/?$", "index.php?post_type=$post_type" . '&feed=$matches[1]', 'top' );
+				add_rewrite_rule( "{$archive_slug}/feed/$feeds/?$", "index.html?post_type=$post_type" . '&feed=$matches[1]', 'top' );
+				add_rewrite_rule( "{$archive_slug}/$feeds/?$", "index.html?post_type=$post_type" . '&feed=$matches[1]', 'top' );
 			}
 			if ( $args->rewrite['pages'] )
-				add_rewrite_rule( "{$archive_slug}/{$wp_rewrite->pagination_base}/([0-9]{1,})/?$", "index.php?post_type=$post_type" . '&paged=$matches[1]', 'top' );
+				add_rewrite_rule( "{$archive_slug}/{$wp_rewrite->pagination_base}/([0-9]{1,})/?$", "index.html?post_type=$post_type" . '&paged=$matches[1]', 'top' );
 		}
 
 		$permastruct_args = $args->rewrite;

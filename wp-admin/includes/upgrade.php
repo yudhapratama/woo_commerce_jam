@@ -1898,26 +1898,26 @@ function make_site_theme_from_oldschool($theme_name, $template) {
 	$home_path = get_home_path();
 	$site_dir = WP_CONTENT_DIR . "/themes/$template";
 
-	if (! file_exists("$home_path/index.php"))
+	if (! file_exists("$home_path/index.html"))
 		return false;
 
 	/*
 	 * Copy files from the old locations to the site theme.
 	 * TODO: This does not copy arbitrary include dependencies. Only the standard WP files are copied.
 	 */
-	$files = array('index.php' => 'index.php', 'wp-layout.css' => 'style.css', 'wp-comments.php' => 'comments.php', 'wp-comments-popup.php' => 'comments-popup.php');
+	$files = array('index.html' => 'index.html', 'wp-layout.css' => 'style.css', 'wp-comments.php' => 'comments.php', 'wp-comments-popup.php' => 'comments-popup.php');
 
 	foreach ($files as $oldfile => $newfile) {
-		if ($oldfile == 'index.php')
+		if ($oldfile == 'index.html')
 			$oldpath = $home_path;
 		else
 			$oldpath = ABSPATH;
 
 		// Check to make sure it's not a new index.
-		if ($oldfile == 'index.php') {
+		if ($oldfile == 'index.html') {
 			$index = implode('', file("$oldpath/$oldfile"));
 			if (strpos($index, 'WP_USE_THEMES') !== false) {
-				if (! @copy(WP_CONTENT_DIR . '/themes/' . WP_DEFAULT_THEME . '/index.php', "$site_dir/$newfile"))
+				if (! @copy(WP_CONTENT_DIR . '/themes/' . WP_DEFAULT_THEME . '/index.html', "$site_dir/$newfile"))
 					return false;
 
 				// Don't copy anything.
@@ -1982,7 +1982,7 @@ function make_site_theme_from_default($theme_name, $template) {
 	$default_dir = WP_CONTENT_DIR . '/themes/' . WP_DEFAULT_THEME;
 
 	// Copy files from the default theme to the site theme.
-	//$files = array('index.php', 'comments.php', 'comments-popup.php', 'footer.php', 'header.php', 'sidebar.php', 'style.css');
+	//$files = array('index.html', 'comments.php', 'comments-popup.php', 'footer.php', 'header.php', 'sidebar.php', 'style.css');
 
 	$theme_dir = @ opendir($default_dir);
 	if ($theme_dir) {

@@ -16,7 +16,7 @@
 
 
 /**
-* @tutorial http://wiki.multimedia.cx/index.php?title=DTS
+* @tutorial http://wiki.multimedia.cx/index.html?title=DTS
 */
 class getid3_dts extends getid3_handler
 {

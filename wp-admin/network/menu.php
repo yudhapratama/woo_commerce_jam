@@ -8,7 +8,7 @@
  */
 
 /* translators: Network menu item */
-$menu[2] = array(__('Dashboard'), 'manage_network', 'index.php', '', 'menu-top menu-top-first menu-icon-dashboard', 'menu-dashboard', 'dashicons-dashboard');
+$menu[2] = array(__('Dashboard'), 'manage_network', 'index.html', '', 'menu-top menu-top-first menu-icon-dashboard', 'menu-dashboard', 'dashicons-dashboard');
 
 $menu[4] = array( '', 'read', 'separator1', '', 'wp-menu-separator' );
 
